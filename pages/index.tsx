@@ -7,9 +7,9 @@ import TimersForm, { ITimersFormData } from "../features/timersForm/TimersForm";
 import useSound from "use-sound";
 
 const timerDisplayName = {
-  sit: "Sit",
-  stand: "Stand",
-  move: "Move",
+  sit: "🪑 Sit",
+  stand: "🆙 Stand",
+  move: "🤸 Move",
 };
 
 const Home: NextPage = () => {
