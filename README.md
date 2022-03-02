@@ -4,6 +4,6 @@ Based on research from Cornell, the optimal mix of sit/stand/move is 20 minutes,
 
 Use these timers throughout your workday.
 
-Free to use, no tracking of any kind.
+Free forever. No third-party trackers of any kind. No network calls, runs entirely in your browser. Open source.
 
-https://sit-stand-move-timers.vercel.app/
+https://www.sit-stand-move-timers.com/
