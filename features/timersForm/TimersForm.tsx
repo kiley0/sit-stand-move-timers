@@ -7,6 +7,7 @@ import {
   Stack,
   Text,
   Divider,
+  Link as ChakraLink,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 
@@ -36,9 +37,24 @@ function TimersForm(props: { onSubmit(data: ITimersFormData): void }) {
 
   return (
     <Stack as="form" onSubmit={onSubmit}>
-      <Heading textAlign="center">Sit Stand Move Timers</Heading>
+      <Heading>Sit Stand Move Timers</Heading>
+      <Text fontSize="sm">
+        Based on the recommendations of researchers at Cornell University
+        Ergonomics, the optimal regimen for an 8-hour workday is to sit for 20
+        minutes, stand for 8 minutes, and move for 2 minutes. Read the{" "}
+        <ChakraLink
+          href="https://ergo.human.cornell.edu/CUESitStand.html"
+          target="_blank"
+          textDecoration="underline"
+        >
+          recommendations and research
+        </ChakraLink>
+        .
+      </Text>
       <Divider />
-      <Text textAlign="center">Enter the duration in minutes</Text>
+      <Text fontWeight="semibold">
+        Enter a duration for each timer in minutes
+      </Text>
       <Stack direction="row">
         <FormControl>
           <FormLabel htmlFor="sitDuration">Sit</FormLabel>
