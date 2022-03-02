@@ -101,12 +101,6 @@ const Home: NextPage = () => {
           />
         )}
       </Box>
-      <Box position="fixed" bottom="0" right="0" w="full">
-        <Text textAlign="center">
-          Created by{" "}
-          <ChakraLink href="https://github.com/kiley0">kiley0</ChakraLink>
-        </Text>
-      </Box>
     </Container>
   );
 };
