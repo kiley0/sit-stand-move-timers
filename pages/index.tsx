@@ -16,7 +16,9 @@ const Home: NextPage = () => {
   const [currentTimer, setCurrentTimer] = useState<
     "sit" | "stand" | "move" | null
   >(null);
-  const [play] = useSound("/sounds/ding1.mp3");
+  const [play] = useSound("/sounds/ding1.mp3", {
+    volume: 0.25,
+  });
 
   const [currentDurationMinutes, setCurrentDurationMinutes] = useState<
     number | null
