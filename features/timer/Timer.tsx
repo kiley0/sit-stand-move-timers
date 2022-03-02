@@ -1,4 +1,5 @@
 import { Box, Button, Heading, Stack, Text } from "@chakra-ui/react";
+import Head from "next/head";
 import { useEffect } from "react";
 import { useTimer } from "react-timer-hook";
 
@@ -13,12 +14,11 @@ function Timer(props: IProps) {
   const { seconds, minutes, restart, isRunning, pause, resume } = useTimer({
     expiryTimestamp: getDurationDateSeconds(props.durationMinutes),
     onExpire: handleExpired,
+    autoStart: true,
   });
 
   useEffect(() => {
-    if (props.durationMinutes) {
-      restart(getDurationDateSeconds(props.durationMinutes));
-    }
+    restart(getDurationDateSeconds(props.durationMinutes), true);
   }, [props.durationMinutes]);
 
   function handleExpired() {
@@ -34,6 +34,11 @@ function Timer(props: IProps) {
 
   return (
     <Box textAlign="center">
+      <Head>
+        <title>
+          {props.timerName} {minutes}:{seconds.toString().padStart(2, "0")}
+        </title>
+      </Head>
       <Heading>{props.timerName}</Heading>
       <Text fontSize="6xl" fontWeight="black">
         {minutes}:{seconds.toString().padStart(2, "0")}

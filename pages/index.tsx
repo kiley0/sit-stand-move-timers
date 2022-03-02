@@ -1,4 +1,4 @@
-import { Container, Box } from "@chakra-ui/react";
+import { Container, Box, Text, Link as ChakraLink } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
@@ -42,19 +42,21 @@ const Home: NextPage = () => {
   }
 
   function handleNext() {
-    play();
     switch (currentTimer) {
       case "sit":
         setCurrentTimer("stand");
         setCurrentDurationMinutes(timerDurations["stand"]);
+        play();
         break;
       case "stand":
         setCurrentTimer("move");
         setCurrentDurationMinutes(timerDurations["move"]);
+        play();
         break;
       case "move":
         setCurrentTimer("sit");
         setCurrentDurationMinutes(timerDurations["sit"]);
+        play();
         break;
 
       default:
@@ -74,7 +76,7 @@ const Home: NextPage = () => {
 
       <Box p="8">
         {!currentTimer && <TimersForm onSubmit={handleSubmitTimersForm} />}
-        {currentTimer && currentDurationMinutes && (
+        {currentTimer === "sit" && currentDurationMinutes && (
           <Timer
             timerName={timerDisplayName[currentTimer]}
             durationMinutes={currentDurationMinutes}
@@ -82,6 +84,28 @@ const Home: NextPage = () => {
             onNext={handleNext}
           />
         )}
+        {currentTimer === "stand" && currentDurationMinutes && (
+          <Timer
+            timerName={timerDisplayName[currentTimer]}
+            durationMinutes={currentDurationMinutes}
+            onCancel={handleCancel}
+            onNext={handleNext}
+          />
+        )}
+        {currentTimer === "move" && currentDurationMinutes && (
+          <Timer
+            timerName={timerDisplayName[currentTimer]}
+            durationMinutes={currentDurationMinutes}
+            onCancel={handleCancel}
+            onNext={handleNext}
+          />
+        )}
+      </Box>
+      <Box position="fixed" bottom="0" right="0" w="full">
+        <Text textAlign="center">
+          Created by{" "}
+          <ChakraLink href="https://github.com/kiley0">kiley0</ChakraLink>
+        </Text>
       </Box>
     </Container>
   );
