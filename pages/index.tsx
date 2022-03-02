@@ -1,10 +1,10 @@
-import { Container } from "@chakra-ui/react";
+import { Container, Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { string } from "prop-types";
 import { useState } from "react";
 import Timer from "../features/timer/Timer";
 import TimersForm, { ITimersFormData } from "../features/timersForm/TimersForm";
+import useSound from "use-sound";
 
 const timerDisplayName = {
   sit: "Sit",
@@ -12,12 +12,11 @@ const timerDisplayName = {
   move: "Move",
 };
 
-type timerKey = keyof typeof timerDisplayName;
-
 const Home: NextPage = () => {
   const [currentTimer, setCurrentTimer] = useState<
     "sit" | "stand" | "move" | null
   >(null);
+  const [play] = useSound("/sounds/ding1.mp3");
 
   const [currentDurationMinutes, setCurrentDurationMinutes] = useState<
     number | null
@@ -43,6 +42,7 @@ const Home: NextPage = () => {
   }
 
   function handleNext() {
+    play();
     switch (currentTimer) {
       case "sit":
         setCurrentTimer("stand");
@@ -72,15 +72,17 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {!currentTimer && <TimersForm onSubmit={handleSubmitTimersForm} />}
-      {currentTimer && currentDurationMinutes && (
-        <Timer
-          timerName={timerDisplayName[currentTimer]}
-          durationMinutes={currentDurationMinutes}
-          onCancel={handleCancel}
-          onNext={handleNext}
-        />
-      )}
+      <Box p="8">
+        {!currentTimer && <TimersForm onSubmit={handleSubmitTimersForm} />}
+        {currentTimer && currentDurationMinutes && (
+          <Timer
+            timerName={timerDisplayName[currentTimer]}
+            durationMinutes={currentDurationMinutes}
+            onCancel={handleCancel}
+            onNext={handleNext}
+          />
+        )}
+      </Box>
     </Container>
   );
 };

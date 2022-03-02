@@ -35,7 +35,7 @@ function TimersForm(props: { onSubmit(data: ITimersFormData): void }) {
   });
 
   return (
-    <Stack as="form" onSubmit={onSubmit} py="4">
+    <Stack as="form" onSubmit={onSubmit}>
       <Heading textAlign="center">Sit Stand Move Timers</Heading>
       <Divider />
       <Text textAlign="center">Enter the duration in minutes</Text>
